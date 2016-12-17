@@ -1,0 +1,11 @@
+{
+  "globalDependencies": {
+    "core-js": "registry:dt/core-js#0.9.7+20161130133742",
+    "electron": "registry:dt/electron#1.4.8+20161129210455",
+    "node": "registry:dt/node#6.0.0+20161212163245",
+    "vs": "github:agileek/typings-vis#73463841f93f4c4dbaf5ed710b3dc9253ec5482d"
+  },
+  "dependencies": {
+    "uuid": "registry:npm/uuid#3.0.1+20161206160008"
+  }
+}

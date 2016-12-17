@@ -1,0 +1,20 @@
+{
+  "name": "RocnnetViser",
+  "authors": [
+    "mingkaic <mingkaichen2009@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vis": "^4.17.0"
+  }
+}
