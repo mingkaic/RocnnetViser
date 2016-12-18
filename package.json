@@ -10,8 +10,21 @@
   "homepage": "",
   "scripts": {
     "start": "tsc && electron main/main.js",
-    "cbuild": "cd viser_api && ./build.sh",
-    "cclean": "rm -rf viser_api/build"
+    "reinstall": "npm install && ./node_modules/.bin/electron-rebuild",
+
+    "electro_build": "HOME=~/.electron-gyp node-gyp rebuild --target=1.4.12 --arch=x64 --dist-url=https://atom.io/download/electron",
+    "cclean": "rm -rf build",
+
+    "cbuild": "npm run node-gyp configure build && npm run ctype && npm run electro_build",
+
+    "//": "compensate for ndts's flaw of piping out 4 lines of trash by removing the 4 lines in a temp",
+    "ctype": "npm run ndts . > temp.txt && sed 1,4d temp.txt > viser_api/rocnnet-types.d.ts && rm temp.txt",
+
+    "autogypi": "autogypi",
+    "node-gyp": "node-gyp",
+    "emcc-path": "emcc-path",
+    "copyasm": "copyasm",
+    "ndts": "ndts"
   },
   "repository": "",
   "keywords": [
@@ -25,6 +38,9 @@
     "electron-rebuild": "^1.4.0"
   },
   "dependencies": {
+    "autogypi": "^0.2.2",
+    "nbind": "^0.3.6",
+    "node-gyp": "^3.4.0",
     "uuid": "^3.0.1",
     "vis": "^4.17.0"
   }

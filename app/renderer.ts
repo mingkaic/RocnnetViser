@@ -1,5 +1,6 @@
 // This file is required by the index.html file and will be executed in the renderer process for that window.
 import { OpNetwork } from './model/op_network'
+import { echo } from './service/graph_controller'
 
 // populate
 let container: HTMLElement = document.getElementById('network');
@@ -27,5 +28,7 @@ let a: string = network.add_leaf('A');
 let b: string = network.add_leaf('B');
 let c: string = network.add_op('add')
 
-network.connect(a, c)
-network.connect(c, b)
+network.connect(a, c);
+network.connect(c, b);
+
+echo();

@@ -9,7 +9,8 @@ Viser heavily relies on
 - Electron
 - Typescript
 - Vis.js visualization library
-- Node-gyp
+- Node-gyp/nbind
+- Angular
 
 Todos
 - Integrate React for mobile extension (for troubleshooting on the go)

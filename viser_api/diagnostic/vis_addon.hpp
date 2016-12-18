@@ -1,4 +1,3 @@
-#include <node.h>
 #include <vector>
 #include <string>
 #include <queue>
@@ -10,6 +9,8 @@
 
 namespace nnet_viser
 {
+
+// CORE COMPONENTS
 
 class graph;
 
@@ -82,6 +83,7 @@ class graph
       }
 };
 
+// DIAGNOSTIC ONLY
 class vis_table
 {
    private:
