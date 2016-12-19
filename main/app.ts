@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron';
+import { BrowserWindow, globalShortcut } from 'electron';
 import { join } from 'path';
 import { format } from 'url';
 
@@ -12,15 +12,32 @@ export default class Main {
     	// Create the browser window.
     	Main.mainWindow = new BrowserWindow({width: 800, height: 600})
 
+        // quick binary operators shortcuts
+        const addMake = globalShortcut.register('Shift+=', () => {
+            console.log('addition is pressed');
+        });
+
+        const subMake = globalShortcut.register('-', () => {
+            console.log('subtraction is pressed');
+        });
+
+        const mulMake = globalShortcut.register('Shift+8', () => {
+            console.log('multiplication is pressed');
+        });
+
+        const divMake = globalShortcut.register('/', () => {
+            console.log('division is pressed');
+        });
+
     	// and load the index.html of the app.
     	Main.mainWindow.loadURL(format({
     		pathname: join(__dirname, '../app/index.html'),
     		protocol: 'file:',
     		slashes: true
-    	}))
+    	}));
 
         // Open DevTools
-        Main.mainWindow.webContents.openDevTools()
+        Main.mainWindow.webContents.openDevTools();
 
     	// Emitted when the window is closed.
     	Main.mainWindow.on('closed', Main.onClose);
@@ -45,13 +62,16 @@ export default class Main {
     	// On OS X it's common to re-create a window in the app when the
     	// dock icon is clicked and there are no other windows open.
     	if (Main.mainWindow === null) {
-    		Main.createWindow()
+    		Main.createWindow();
     	}
     }
 
-    static main(
-        app: Electron.App,
-        browserWindow: typeof BrowserWindow){
+    private static onQuit() {
+        // Unregister all shortcuts.
+        globalShortcut.unregisterAll();
+    }
+
+    static main(app: Electron.App, browserWindow: typeof BrowserWindow) {
         // we pass the Electron.App object and the
         // Electron.BrowserWindow into this function
         // so this class1 has no dependencies.  This
@@ -61,6 +81,7 @@ export default class Main {
         Main.application = app;
         Main.application.on('ready', Main.createWindow);
         Main.application.on('activate', Main.onActivate);
+        Main.application.on('will-quit', Main.onQuit);
         Main.application.on('window-all-closed', Main.onWindowAllClosed);
     }
 }

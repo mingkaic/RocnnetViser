@@ -29,6 +29,6 @@ let b: string = network.add_leaf('B');
 let c: string = network.add_op('add')
 
 network.connect(a, c);
-network.connect(c, b);
+network.connect(b, c);
 
 echo();
