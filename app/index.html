@@ -1,25 +1,14 @@
-<!DOCTYPE html>
+<!--DOCTYPE html-->
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Rocnnet</title>
-		<link href="css/styles.css" rel="stylesheet" type="text/css" />
-        <link href="css/network.css" rel="stylesheet" type="text/css" />
-		<link href="../bower_components/vis/dist/vis.css" rel="stylesheet" type="text/css" />
-
-		<!-- vis in case angular needs it -->	
-		<script src="../node_modules/vis/dist/vis.js"></script>
-		<!-- angular -->	
-		<script src="./component/app.component.js"></script>
-	</head>
-	<body>
-		<h1>Rocnnet Viser</h1>
-		<div id="network"></div>
-		<roc-app>Loading...</roc-app>
-	</body>
-	
+<head>
+	<title>Rocnnet-Viser</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="network"></div>
 	<script>
 		// You can also require other files to run in this process
-		require('./renderer.js')
+		require('./network/renderer.js')
 	</script>
+</body>
 </html>
