@@ -10,9 +10,9 @@
   "homepage": "",
   "scripts": {
     "start": "electron dist/app/main.js",
-    "build": "npm i && typings i && gulp build && npm run electro_build",
+    "build": "npm i && typings i && gulp",
     "clean": "gulp clean && rm -rf node_modules && rm -rf typings && rm -rf addon/build",
-    "electro_build": "HOME=~/.electron-gyp node-gyp rebuild --target=1.4.12 --arch=x64 --dist-url=https://atom.io/download/electron"
+    "electro-gyp": "HOME=~/.electron-gyp node-gyp rebuild --target=1.4.12 --arch=x64 --dist-url=https://atom.io/download/electron"
   },
   "repository": "",
   "keywords": [
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "electron": "^1.4.13",
+    "electron-builder": "^10.17.3",
     "node-gyp": "^3.4.0",
     "vis": "^4.17.0"
   }
