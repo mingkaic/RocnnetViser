@@ -70,7 +70,9 @@ gulp.task('tslint', function() {
 
 // COMPILE ADDON
 gulp.task('build:addon', () => {
-	return run('cd addon && node-gyp configure && node-gyp build && cd build && make').exec();
+	return run('node-gyp configure && '+
+		'HOME=~/.electron-gyp '+
+		'node-gyp rebuild --target=1.4.12 --arch=x64 --dist-url=https://atom.io/download/electron').exec();
 });
 
 // >>>> SECOND ORDER DEPENDENCIES
@@ -88,12 +90,6 @@ gulp.task('build:app', ['tslint'], function () {
 gulp.task('copy:addon', ['build:addon'], () => {
 	return gulp.src([
 		'node_viser.node'
-	], { cwd: 'addon/build/Release/**'})
+	], { cwd: 'build/Release/**'})
 	.pipe(gulp.dest('dist/addon'));
-});
-
-// >>>> THIRD ORDER DEPENDNCIES
-// rebuild electron executable to make use of gyp-rebuild workaround
-gulp.task('build:electron', ['build:app', 'build:addon'], () => {
-	return;
 });

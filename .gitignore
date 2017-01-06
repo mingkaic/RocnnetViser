@@ -61,5 +61,4 @@ typings
 # project exclusive
 build
 dist
-addon/build
 addon/cpydeps.sh

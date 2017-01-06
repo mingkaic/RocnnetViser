@@ -2,13 +2,13 @@
 	"targets": [{
 		"target_name": "node_viser",
 		"sources": [
-			"src/service.cpp"
+			"addon/src/service.cpp"
 		],
 		"include_dirs": [
-			"./dep_include"
+			"addon/dep_include"
 		],
 		"link_settings": {
-			"libraries": ["-L../lib", "-ltenncor_io"]
+			"libraries": ["-L../addon/lib", "-ltenncor_io"]
 		},
 		"conditions": [
 			[

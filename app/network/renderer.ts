@@ -1,6 +1,6 @@
 // this file is required by the index.html file and will be executed in the renderer process for that window.
 import { OpNetwork } from './service/opNetwork.service';
-// import { addLeaf, addOp, link, OP_TYPE } from '../../addon/node_viser';
+import { addLeaf, addOp, link, OP_TYPE } from '../../addon/node_viser';
 
 // populate
 let container: HTMLElement = document.getElementById('network');
@@ -24,11 +24,11 @@ let options: any = {
 
 let network: OpNetwork = new OpNetwork(container, options);
 
-// let reala = addLeaf('A');
-// let realb = addLeaf('B');
-// let realop = addOp(OP_TYPE.ADD);
-// link(reala, realop, 0);
-// link(realb, realop, 1);
+let reala = addLeaf('A');
+let realb = addLeaf('B');
+let realop = addOp(OP_TYPE.ADD);
+link(reala, realop, 0);
+link(realb, realop, 1);
 
 let a: string = network.add_leaf('A');
 let b: string = network.add_leaf('B');
