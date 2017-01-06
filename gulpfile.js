@@ -21,15 +21,18 @@ if (isMac) {
 		return run('install_name_tool -change @rpath/libtenncor_io.dylib /Users/cmk/Developer/webspace/viser/addon/lib/libtenncor_io.dylib ./dist/addon/node_viser.node').exec();
 	});
 
-	// configured to also build server-side
+	// build
 	gulp.task('build', [
-		'copy:libs', 'copy:static', 'tslint',  'build:app', 'copy:addon', 'mac:link'
+		'copy:libs', 'copy:static', 'tslint', 
+		'build:app', 'copy:addon', 'mac:link',
+		'typecompile:addon'
 	]);
 }
 else {
-	// configured to also build server-side
 	gulp.task('build', [
-		'copy:libs', 'copy:static', 'tslint',  'build:app'
+		'copy:libs', 'copy:static', 'tslint',
+		'build:app', 'copy:addon',
+		'typecompile:addon'
 	]);
 }
 
@@ -92,4 +95,14 @@ gulp.task('copy:addon', ['build:addon'], () => {
 		'node_viser.node'
 	], { cwd: 'build/Release/**'})
 	.pipe(gulp.dest('dist/addon'));
+});
+
+// copy over optypes.ts
+gulp.task('typecompile:addon', ['build:addon'], function () {
+	var tsResult = gulp.src('addon/optypes.ts')
+		.pipe(sourcemaps.init())
+		.pipe(typescript(config.compilerOptions));
+	return tsResult.js
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest('dist/addon'));
 });

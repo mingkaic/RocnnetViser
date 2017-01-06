@@ -75,7 +75,7 @@ static bool getArg (bool& out,
 	return true;
 }
 
-// expect arguments { label: string, is_placeholder: ?boolean }
+// expect arguments { label: string, is_placeholder?: boolean }
 // expect return { leaf_id: string } 
 void leaf (const FunctionCallbackInfo<Value>& args)
 {
