@@ -10,7 +10,9 @@ using v8::FunctionCallbackInfo;
 using v8::Value;
 using v8::Isolate;
 using v8::String;
+using v8::Number;
 using v8::Boolean;
+using v8::Function;
 using v8::Exception;
 
 // graph storage
@@ -110,16 +112,31 @@ void leaf (const FunctionCallbackInfo<Value>& args)
 	args.GetReturnValue().Set(String::NewFromUtf8(isolate, id.c_str()));
 }
 
-// expect arguments { op_type: number(enum associated to tensorio::CONNECTOR_TYPE) }
+// expect arguments {
+//		op_type: number(enum associated to tensorio::CONNECTOR_TYPE), 
+//		callback: function(number)
+// }
 // expect return { operation_id: string } 
 void operation (const FunctionCallbackInfo<Value>& args)
 {
+	if (!validateArgc(args, 2) && !validateArgc(args, 1)) return;
+
 	Isolate* isolate = args.GetIsolate();
 	tensorio::CONNECTOR_TYPE ct;
 	size_t ci;
+	size_t nargs;
 	if (!getArg(ci, args, 0)) return;
 	ct = static_cast<tensorio::CONNECTOR_TYPE>(ci);
-	std::string id = ctx.register_op(ct);
+	std::string id = ctx.register_op(ct, nargs);
+
+	Local<Function> cb = Local<Function>::Cast(args[1]);
+	const size_t argc = 2;
+	Local<Value> argv[argc] = {
+		String::NewFromUtf8(isolate, id.c_str()), 
+		Number::New(isolate, nargs)
+	};
+	cb->Call(Null(isolate), argc, argv);
+
 	args.GetReturnValue().Set(String::NewFromUtf8(isolate, id.c_str()));
 }
 
