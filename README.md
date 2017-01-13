@@ -9,8 +9,16 @@ Viser heavily relies on
 - Electron
 - Typescript
 - Vis.js visualization library
-- Node-gyp/nbind
-- Angular
+- Node-gyp
 
-Todos
-- Integrate React for mobile extension (for troubleshooting on the go)
+How to start:
+1. install dependencies and typescript declarations:
+> npm install
+2. compile typescripts and arrange file directory:
+> gulp build
+3. start electorn application:
+> npm start
+
+Cleaning: 
+- npm run clean (deletes both installed typescript declarations dir, node_modules and destination directory dist)
+- gulp clean (only deletes destination directory dist)

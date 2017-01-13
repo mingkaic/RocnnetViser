@@ -5,22 +5,14 @@
     "mingkaic <mingkaichen2009@gmail.com>"
   ],
   "description": "Operation graph visualizer",
-  "main": "main/main.js",
+  "main": "dist/app/main.ts",
   "license": "MIT",
   "homepage": "",
   "scripts": {
-    "start": "tsc && electron main/main.js",
-    "reinstall": "npm install && ./node_modules/.bin/electron-rebuild",
-    "//": "",
-    "electro_build": "HOME=~/.electron-gyp node-gyp rebuild --target=1.4.12 --arch=x64 --dist-url=https://atom.io/download/electron",
-    "cclean": "rm -rf build",
-    "cbuild": "npm run node-gyp configure build && npm run ctype && npm run electro_build",
-    "ctype": "npm run ndts . > temp.txt && sed 1,4d temp.txt > viser_api/rocnnet-types.d.ts && rm temp.txt",
-    "autogypi": "autogypi",
-    "node-gyp": "node-gyp",
-    "emcc-path": "emcc-path",
-    "copyasm": "copyasm",
-    "ndts": "ndts"
+    "start": "electron dist/app/main.js",
+    "rebuild": "electron-rebuild -f -w dist/app/main.js",
+    "install": "typings i",
+    "clean": "gulp clean && rm -rf node_modules && rm -rf typings && rm -rf build"
   },
   "repository": "",
   "keywords": [
@@ -30,30 +22,22 @@
   ],
   "author": "mingkaic",
   "devDependencies": {
+    "del": "^2.2.2",
     "electron": "^1.4.12",
-    "electron-rebuild": "^1.4.0"
+    "electron-rebuild": "^1.4.0",
+    "gulp": "^3.9.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-run": "^1.7.1",
+    "gulp-tslint": "^3.6.0",
+    "gulp-typescript": "^2.8.0",
+    "run-sequence": "^1.2.2",
+    "tslint": "^3.2.1",
+    "typescript": "^1.7.3"
   },
   "dependencies": {
-    "@angular/common": "^2.3.1",
-    "@angular/compiler": "^2.3.1",
-    "@angular/core": "^2.3.1",
-    "@angular/forms": "^2.3.1",
-    "@angular/http": "^2.3.1",
-    "@angular/platform-browser": "^2.3.1",
-    "@angular/platform-browser-dynamic": "^2.3.1",
-    "@angular/router": "^3.3.1",
-    "angular-in-memory-web-api": "^0.2.1",
-    "autogypi": "^0.2.2",
-    "core-js": "^2.4.1",
-    "es6-promise": "^4.0.5",
-    "es6-shim": "^0.35.2",
-    "nbind": "^0.3.6",
+    "electron": "^1.4.13",
+    "electron-builder": "^10.17.3",
     "node-gyp": "^3.4.0",
-    "reflect-metadata": "^0.1.8",
-    "rxjs": "^5.0.1",
-    "systemjs": "^0.19.41",
-    "uuid": "^3.0.1",
-    "vis": "^4.17.0",
-    "zone.js": "^0.7.2"
+    "vis": "^4.17.0"
   }
 }

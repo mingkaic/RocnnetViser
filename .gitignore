@@ -53,9 +53,12 @@ bower_components
 typings
 *.js.map
 *.js
+!gulpfile.js
 
 # visual studio code
 .vscode
 
 # project exclusive
 build
+dist
+addon/cpydeps.sh
