@@ -35,7 +35,7 @@ export default class ElectronApp {
 		}));
 
 		// open DevTools
-		ElectronApp.mainWindow.webContents.openDevTools();
+		// // ElectronApp.mainWindow.webContents.openDevTools();
 
 		// emitted when the window is closed.
 		ElectronApp.mainWindow.on('closed', ElectronApp.onClose);
